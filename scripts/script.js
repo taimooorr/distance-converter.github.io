@@ -20,8 +20,8 @@
     });
     form.addEventListener('submit', function (event) {
         event.preventDefault();
-        const distance = document.getElementById("distance").value;
-        if (distance) {
+        const distance = parseFloat(document.getElementById("distance").value);
+        if (distance != "" && !isNaN(distance)) {
             if (convertType == "miles") {
                 const converted = (distance * 1.60934).toFixed(2);
                 answerDiv.textContent = `${distance} miles Converted to ${converted} kilometers.`;
