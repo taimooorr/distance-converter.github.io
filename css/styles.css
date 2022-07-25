@@ -141,3 +141,9 @@ input[type="button"].button-primary:focus {
   color: #FFF;
   background-color: #1EAEDB;
   border-color: #1EAEDB; }
+@media(max-width : 767px){
+  body {
+    width: 100%;
+    float: none;
+  }
+}
