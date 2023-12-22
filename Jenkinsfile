@@ -5,11 +5,7 @@ pipeline {
       stage('Build') {
         steps {
           script {
-            sh '''
-            #!/bin/bash
-            export DOCKER_BUILDKIT=1
-            docker build -t taimoorrkhan/distance-converter:3 .
-            '''
+            dockerImage = docker.build("taimoorrkhan/distance-converter:${env.BUILD_ID}")
         }
     }
 }
