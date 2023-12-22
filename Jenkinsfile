@@ -2,18 +2,17 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
-            steps {
-                script {
-                    sh '''
-                    export DOCKER_BUILDKIT=1
-                    docker build -t taimoorrkhan/distance-converter:${env.BUILD_ID} .
-                    '''
-                    dockerImage = docker.image("taimoorrkhan/distance-converter:${env.BUILD_ID}")
-                }
-            }
+      stage('Build') {
+        steps {
+          script {
+            sh '''
+            #!/bin/bash
+            export DOCKER_BUILDKIT=1
+            docker build -t taimoorrkhan/distance-converter:${env.BUILD_NUMBER} .
+            '''
         }
-
+    }
+}
         stage('Push') {
             steps {
                 script {
