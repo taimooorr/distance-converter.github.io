@@ -7,7 +7,7 @@ pipeline {
                 script {
                   sh '''
                   export DOCKER_BUILDKIT=1
-                  docker build -t taimoorrkhan/distance-converter:${env.BUILD_ID} .
+                  docker build -t taimoorrkhan/distance-converter:3 .
                   '''              }
             }
         }
