@@ -30,7 +30,7 @@ pipeline {
                 sshPublisher(
                     publishers: [
                         sshPublisherDesc(
-                            configName: "ec2-ssh",
+                            configName: "MyUbuntuServer", 
                             transfers: [sshTransfer(
                                 execCommand: """
                                     docker pull taimoorrkhan/distance-converter:${env.BUILD_ID}
