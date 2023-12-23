@@ -78,9 +78,19 @@ pipeline {
     post {
         failure {
             mail(
-                to: 'taimoorkhan.tmr123@gmail.com',
+                to: 'sp20-bcs-026@cuiatk.edu.pk',
                 subject: "Failed Pipeline: ${env.JOB_NAME} [${env.BUILD_NUMBER}]",
-                body: "Something is wrong with the build ${env.BUILD_URL}"
+                body: 
+                """
+                The pipeline job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' has failed.
+                Please check the job for more details.
+                
+                URL: ${env.BUILD_URL}
+
+                Regards,
+                
+                Jenkins
+                """
             )
         }
     }
