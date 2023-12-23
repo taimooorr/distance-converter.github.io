@@ -5,7 +5,7 @@ pipeline {
       stage('Build') {
         steps {
           script {
-            dockerImage = docker.build("taimoorrkhan/distance-coOOnverter:${env.BUILD_ID}")
+            dockerImage = docker.build("taimoorrkhan/distance-converter:${env.BUILD_ID}")
         }
     }
 }
