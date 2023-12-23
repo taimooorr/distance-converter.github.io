@@ -5,7 +5,7 @@ pipeline {
       stage('Build') {
         steps {
           script {
-            dockerImage = docker.build("taimoorrkhan/distance-converter:${env.BUILD_ID}")
+            dockerImage = docker.build("taimoorrkhan/distance-coOOnverter:${env.BUILD_ID}")
         }
     }
 }
@@ -80,7 +80,13 @@ pipeline {
             mail(
                 to: 'sp20-bcs-026@cuiatk.edu.pk',
                 subject: "Failed Pipeline: ${env.JOB_NAME} [${env.BUILD_NUMBER}]",
-                body: "Something is wrong with the build ${env.BUILD_URL}"
+                body: """Something is wrong with the build ${env.BUILD_URL}
+                Rolling back to the previous version
+
+                Regards,
+                Jenkins
+                
+                """
             )
         }
     }
