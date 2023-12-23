@@ -80,17 +80,7 @@ pipeline {
             mail(
                 to: 'sp20-bcs-026@cuiatk.edu.pk',
                 subject: "Failed Pipeline: ${env.JOB_NAME} [${env.BUILD_NUMBER}]",
-                body: 
-                """
-                The pipeline job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' has failed.
-                Please check the job for more details.
-                
-                URL: ${env.BUILD_URL}
-
-                Regards,
-                
-                Jenkins
-                """
+                body: "Something is wrong with the build ${env.BUILD_URL}"
             )
         }
     }
