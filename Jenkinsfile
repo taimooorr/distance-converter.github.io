@@ -21,14 +21,14 @@ pipeline {
 
         stage('Test') {
             steps {
-                sh 'ls -l index.html' // Simple check for index.html
+                sh 'ls -l index.html'
             }
         }
 
         stage('Deploy') {
             steps {
                 script {
-                    // Deploy the new version
+                   
                     sshPublisher(
                         publishers: [
                             sshPublisherDesc(
@@ -45,11 +45,11 @@ pipeline {
                         ]
                     )
 
-                    // Check if deployment is successful
+                  
                     boolean isDeploymentSuccessful = sh(script: 'curl -s -o /dev/null -w "%{http_code}" http://51.20.126.236:400', returnStdout: true).trim() == '200'
 
                     if (!isDeploymentSuccessful) {
-                        // Rollback to the previous version
+                       
                         def previousSuccessfulTag = readFile('previous_successful_tag.txt').trim()
                         sshPublisher(
                             publishers: [
@@ -67,7 +67,7 @@ pipeline {
                             ]
                         )
                     } else {
-                        // Update the last successful tag
+                       
                         writeFile file: 'previous_successful_tag.txt', text: "${env.BUILD_ID}"
                     }
                 }
