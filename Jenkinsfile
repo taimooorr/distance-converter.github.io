@@ -38,7 +38,7 @@ pipeline {
                                         docker pull taimoorrkhan/distance-converter:${env.BUILD_ID}
                                         docker stop distance-converter-container || true
                                         docker rm distance-converter-container || true
-                                        docker run -d --name distance-converter-container -p 400:80 taimoorrkhan/distance-converter:${env.BUILD_ID}
+                                        docker run -d --name distance-converter-container -p 80:80 taimoorrkhan/distance-converter:${env.BUILD_ID}
                                     """
                                 )]
                             )
@@ -46,7 +46,7 @@ pipeline {
                     )
 
                   
-                    boolean isDeploymentSuccessful = sh(script: 'curl -s -o /dev/null -w "%{http_code}" http://51.20.126.236:400', returnStdout: true).trim() == '200'
+                    boolean isDeploymentSuccessful = sh(script: 'curl -s -o /dev/null -w "%{http_code}" http://51.20.126.236:80', returnStdout: true).trim() == '200'
 
                     if (!isDeploymentSuccessful) {
                        
@@ -60,7 +60,7 @@ pipeline {
                                             docker pull taimoorrkhan/distance-converter:${previousSuccessfulTag}
                                             docker stop distance-converter-container || true
                                             docker rm distance-converter-container || true
-                                            docker run -d --name distance-converter-container -p 400:80 taimoorrkhan/distance-converter:${previousSuccessfulTag}
+                                            docker run -d --name distance-converter-container -p 80:80 taimoorrkhan/distance-converter:${previousSuccessfulTag}
                                         """
                                     )]
                                 )
